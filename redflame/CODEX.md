@@ -35,7 +35,7 @@ The first ambiguous-definition E2E test stayed forever in `CLASSIFYING`. The eff
 - Task: Separate deterministic unit tests from Playwright, pin a Next-compatible TypeScript version, and prove a clean production build.
 - Files: `vitest.config.ts`, `playwright.config.ts`, `package.json`, `pnpm-lock.yaml`, `.github/workflows/redflame-ci.yml`.
 - Verification: 17 deterministic tests, two browser paths, and `next build`.
-- Outcome: PASS locally. Vercel installed from the lockfile and completed the production build. GitHub Actions run [`29513856511`](https://github.com/NeoCh3n/PE-WeKnora/actions/runs/29513856511) completed successfully on the public branch.
+- Outcome: PASS locally. Vercel installed from the lockfile and completed the production build. GitHub Actions run [`29515229913`](https://github.com/NeoCh3n/PE-WeKnora/actions/runs/29515229913) completed successfully for the auditable model-evidence build on the public branch.
 - Commits: `474a94f8`, `daa1dcb2`, `27f89547`, `45d736c3`.
 
 ## Entry 5 · Audit judge-visible claims

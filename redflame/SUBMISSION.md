@@ -129,5 +129,5 @@ For an investment professional, the value is a reviewable answer to “what must
 - [x] Generate and verify a local timing fallback: `artifacts/redflame-demo.mp4` · 149.1 seconds · 1440×900 · H.264/AAC. It must be regenerated after the real GPT-5.6 eval.
 - [ ] Review the generated MP4, or record a human-voice take using [`DEMO_SCRIPT.md`](./DEMO_SCRIPT.md).
 - [ ] Upload the selected video publicly and add its URL to README and Devpost.
-- [x] Confirm GitHub Actions is green: [run 29513856511](https://github.com/NeoCh3n/PE-WeKnora/actions/runs/29513856511).
+- [x] Confirm GitHub Actions is green for the auditable model-evidence build: [run 29515229913](https://github.com/NeoCh3n/PE-WeKnora/actions/runs/29515229913).
 - [ ] Optionally add permitted user evidence; otherwise keep the unvalidated wording.

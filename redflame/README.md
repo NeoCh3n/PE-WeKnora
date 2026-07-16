@@ -114,7 +114,7 @@ This repository fork existed before the submission period. The complete `redflam
 | Artifact | Status |
 |---|---|
 | Local production build | PASS |
-| GitHub CI | PASS · [run 29513856511](https://github.com/NeoCh3n/PE-WeKnora/actions/runs/29513856511) |
+| GitHub CI | PASS · [run 29515229913](https://github.com/NeoCh3n/PE-WeKnora/actions/runs/29515229913) |
 | Deterministic tests | PASS |
 | Playwright Accept/HOLD/Receipt/Reset path | PASS |
 | Playwright semantic-block path | PASS |
