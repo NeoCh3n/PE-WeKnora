@@ -29,4 +29,12 @@ describe("review resolution state machine", () => {
     });
     expect(transitionReview(accepted, { type: "investigate" })).toBe(accepted);
   });
+
+  it("retains the approved decision when the candidate is kept out", () => {
+    expect(transitionReview(initialReviewState, { type: "keep_previous" })).toMatchObject({
+      evidence: "kept_previous",
+      memo: "current",
+      deal: "approved",
+    });
+  });
 });

@@ -34,9 +34,9 @@ The first ambiguous-definition E2E test stayed forever in `CLASSIFYING`. The eff
 
 - Task: Separate deterministic unit tests from Playwright, pin a Next-compatible TypeScript version, and prove a clean production build.
 - Files: `vitest.config.ts`, `playwright.config.ts`, `package.json`, `pnpm-lock.yaml`, `.github/workflows/redflame-ci.yml`.
-- Verification: 15 deterministic tests, two browser paths, and `next build`.
+- Verification: 16 deterministic tests, two browser paths, and `next build`.
 - Outcome: PASS locally. GitHub-hosted CI is pending push.
-- Commits: `474a94f8`, `daa1dcb2`; CI workflow commit pending.
+- Commits: `474a94f8`, `daa1dcb2`, `27f89547`.
 
 ## Entry 5 · Audit judge-visible claims
 
@@ -44,12 +44,12 @@ The first ambiguous-definition E2E test stayed forever in `CLASSIFYING`. The eff
 - Files: `README.md`, `CODEX.md`, `docs/decision-pr.png`, `docs/resolution-receipt.png`, `evals/live/`.
 - Verification: source-backed capability links, explicit unvalidated-impact wording, explicit `NOT LIVE` recorded mode, and evidence-gate status table.
 - Outcome: PASS for local evidence. Both screenshots exist and unsupported external claims are marked missing. Commit hashes remain to be finalized; deployment, live eval, `/feedback`, and video require external completion.
-- Evidence screenshot commit: `daa1dcb2`; documentation commit pending.
+- Commits: evidence screenshots `daa1dcb2`; README, build record, and evidence gate `27f89547`.
 
 ## Verification log
 
 ```text
-vitest: 15 tests passed
+vitest: 16 tests passed
 playwright: 2 paths passed
 next build: PASS
 ```

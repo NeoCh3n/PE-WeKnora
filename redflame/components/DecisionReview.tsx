@@ -133,6 +133,7 @@ export function DecisionReview() {
   }
 
   const accepted = review.evidence === "accepted";
+  const keptPrevious = review.evidence === "kept_previous";
   const blocked = view === "ambiguous";
 
   return (
@@ -146,7 +147,9 @@ export function DecisionReview() {
           <span>PROJECT APEX</span>
           <strong>Approved Decision v3 <i>→</i> Candidate Evidence v4</strong>
         </div>
-        <Badge tone={accepted ? "warning" : "danger"}>{accepted ? "HOLD" : "REVIEW REQUIRED"}</Badge>
+        <Badge tone={accepted ? "warning" : keptPrevious ? "success" : "danger"}>
+          {accepted ? "HOLD" : keptPrevious ? "APPROVED V3 RETAINED" : "REVIEW REQUIRED"}
+        </Badge>
       </header>
 
       <section className="hero" id="top">
@@ -158,7 +161,7 @@ export function DecisionReview() {
         <div className="summary-strip" aria-label="Decision summary">
           <div><strong>2</strong><span>FAILED TESTS</span></div>
           <div><strong>1</strong><span>PASSED · UNAFFECTED</span></div>
-          <div className="summary-secondary"><strong>2</strong><span>STALE PARAGRAPHS</span></div>
+          <div className="summary-secondary"><strong>{keptPrevious ? "0" : "2"}</strong><span>STALE PARAGRAPHS</span></div>
           <div className="summary-secondary"><strong>1</strong><span>IMPACT PATH</span></div>
         </div>
       </section>
@@ -223,12 +226,12 @@ export function DecisionReview() {
           </section>
 
           <section className="panel memo-panel">
-            <div className="panel-heading"><div><p className="eyebrow">04 · AFFECTED WORK PRODUCT</p><h2>IC Memo Assertions</h2></div><Badge tone={accepted ? "warning" : "danger"}>{accepted ? "2 DRAFT" : "2 STALE"}</Badge></div>
+            <div className="panel-heading"><div><p className="eyebrow">04 · AFFECTED WORK PRODUCT</p><h2>IC Memo Assertions</h2></div><Badge tone={accepted ? "warning" : keptPrevious ? "success" : "danger"}>{accepted ? "2 DRAFT" : keptPrevious ? "CURRENT" : "2 STALE"}</Badge></div>
             {memoParagraphs.map((paragraph) => (
               <div className="memo-row" key={paragraph.id}>
                 <span>{paragraph.id.toUpperCase()}</span>
                 <div><strong>{paragraph.title}</strong><p>{accepted ? paragraph.draft : paragraph.approved}</p></div>
-                <Badge tone={accepted ? "warning" : "danger"}>{accepted ? "DRAFT REVISION" : "STALE"}</Badge>
+                <Badge tone={accepted ? "warning" : keptPrevious ? "success" : "danger"}>{accepted ? "DRAFT REVISION" : keptPrevious ? "CURRENT" : "STALE"}</Badge>
               </div>
             ))}
           </section>
