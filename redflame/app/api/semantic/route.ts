@@ -63,7 +63,7 @@ export async function POST(request: NextRequest) {
       return unavailable("The model did not confirm a high-confidence definition change. Route to investigation.");
     }
     return NextResponse.json(
-      { mode: "live", model, timestamp: new Date().toISOString(), fixtureId: semanticFixture.id, result },
+      { mode: "live", provider: "openai_responses_api", model, responseId: response.id, timestamp: new Date().toISOString(), fixtureId: semanticFixture.id, result },
       { headers: { "cache-control": "no-store" } },
     );
   } catch (error) {

@@ -123,7 +123,7 @@ button:disabled { cursor: not-allowed; opacity: 0.48; }
 .model-result { background: var(--amber-soft); border: 1px solid #ead594; }
 .model-result > strong { display: block; margin-top: 12px; color: #754f00; font-size: 12px; }
 .model-result p { margin: 8px 0; color: #675a43; font-size: 12px; line-height: 1.45; }
-.model-result small { color: #8a7a5d; font-size: 9px; }
+.model-result small { display: block; margin-top: 3px; color: #8a7a5d; font-size: 9px; overflow-wrap: anywhere; }
 
 .action-bar { position: fixed; z-index: 20; left: 0; right: 0; bottom: 0; min-height: 88px; padding: 15px max(28px, calc((100vw - 1304px) / 2)); display: flex; align-items: center; justify-content: space-between; gap: 28px; color: white; background: rgba(17, 26, 43, .97); box-shadow: 0 -12px 35px rgba(16,22,33,.18); backdrop-filter: blur(12px); }
 .action-bar strong { display: block; font-size: 12px; }

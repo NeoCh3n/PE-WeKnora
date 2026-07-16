@@ -12,13 +12,17 @@ const STORAGE_KEY = "redflame-review-v1";
 type EvidenceView = "value" | "ambiguous";
 type ModelState =
   | { status: "idle" | "pending" }
-  | { status: "live" | "recorded"; explanation: string; timestamp: string; reasonCode: string; modelName?: string; verified?: boolean }
+  | { status: "live" | "recorded"; explanation: string; timestamp: string; reasonCode: string; modelName?: string; verified?: boolean; provider?: string; evidenceId?: string; fixtureHash?: string }
   | { status: "unavailable"; explanation: string };
 
 const verifiedRecordedEval = latestEval as {
   mode?: string;
   timestamp?: string;
   model?: string;
+  provider?: string;
+  responseId?: string;
+  codexSessionId?: string;
+  fixtureHash?: string;
   result?: { explanation?: string; reason_code?: string; definition_changed?: boolean; confidence?: number };
 };
 const hasVerifiedRecordedEval = verifiedRecordedEval.mode === "live_eval"
@@ -32,6 +36,9 @@ const recordedEval = hasVerifiedRecordedEval ? {
   timestamp: verifiedRecordedEval.timestamp!,
   reasonCode: verifiedRecordedEval.result!.reason_code!,
   modelName: verifiedRecordedEval.model!,
+  provider: verifiedRecordedEval.provider,
+  evidenceId: verifiedRecordedEval.codexSessionId || verifiedRecordedEval.responseId,
+  fixtureHash: verifiedRecordedEval.fixtureHash,
   verified: true,
 } : {
   explanation: "The source notes treat transformation adjustments differently, so the EBITDA definitions are not directly comparable.",
@@ -115,6 +122,8 @@ export function DecisionReview() {
             timestamp: body.timestamp,
             reasonCode: body.result.reason_code,
             modelName: typeof body.model === "string" ? body.model : "OPENAI MODEL",
+            provider: typeof body.provider === "string" ? body.provider : "openai_responses_api",
+            evidenceId: typeof body.responseId === "string" ? body.responseId : undefined,
           });
           return;
         }
@@ -226,6 +235,8 @@ export function DecisionReview() {
                     <strong>DEFINITION CHANGED · COMPARISON BLOCKED</strong>
                     <p>{model.explanation}</p>
                     <small>{model.reasonCode} · {model.timestamp}</small>
+                    {model.evidenceId && <small>EVIDENCE · {model.provider || "model"} · {model.evidenceId}</small>}
+                    {model.fixtureHash && <small>FIXTURE SHA-256 · {model.fixtureHash.slice(0, 16)}…</small>}
                   </div>
                 )}
                 {model.status === "unavailable" && <div className="model-result"><Badge tone="warning">GPT UNAVAILABLE · INVESTIGATE</Badge><p>{model.explanation}</p></div>}
