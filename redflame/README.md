@@ -32,7 +32,7 @@ pnpm dev
 
 Open `http://localhost:3000`.
 
-The default public-safe mode does not call a model. Until a real eval runs, it shows a committed fallback labeled `RECORDED EVAL FIXTURE · NOT LIVE`; that fixture is not presented as model-run evidence. `pnpm run eval:live` uses authorized GPT-5.6 access and replaces `evals/live/latest.json` with a timestamped artifact containing the model, response ID, and fixture hash. After that artifact is reviewed and committed, the UI identifies it as a verified recorded eval. To enable the constrained runtime endpoint as well, copy `.env.example` to `.env.local` and configure OpenAI plus Upstash Redis. The endpoint accepts one committed fixture ID, not arbitrary prompts.
+The default public-safe mode does not call a model. Until a real eval runs, it shows a committed fallback labeled `RECORDED EVAL FIXTURE · NOT LIVE`; that fixture is not presented as model-run evidence. `pnpm run eval:codex` uses the authenticated Codex CLI with GPT-5.6 Sol in an isolated temporary directory; `pnpm run eval:live` is the API-key alternative. Either command replaces `evals/live/latest.json` with a timestamped artifact containing the exact model, fixture hash, structured result, and provider request/session ID. After that artifact is reviewed and committed, the UI identifies it as a verified recorded eval. To enable the constrained runtime endpoint as well, copy `.env.example` to `.env.local` and configure OpenAI plus Upstash Redis. The endpoint accepts one committed fixture ID, not arbitrary prompts.
 
 ## Verification
 
@@ -40,6 +40,7 @@ The default public-safe mode does not call a model. Until a real eval runs, it s
 pnpm test          # deterministic unit and API contract tests
 pnpm run test:e2e  # two Playwright product paths
 pnpm run build     # production build
+pnpm run eval:codex # real GPT-5.6 eval through authenticated Codex CLI
 pnpm run eval:live # real model eval; requires OPENAI_API_KEY
 pnpm run record:demo # macOS: generate a narrated MP4 from the public app
 ```

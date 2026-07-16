@@ -15,6 +15,7 @@
     "test:e2e": "playwright test",
     "capture:evidence": "tsx scripts/capture-evidence.ts",
     "record:demo": "tsx scripts/record-demo.ts",
+    "eval:codex": "tsx scripts/eval-codex.ts",
     "eval:live": "tsx scripts/eval-live.ts"
   },
   "dependencies": {

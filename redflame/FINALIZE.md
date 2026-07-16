@@ -4,6 +4,14 @@ Everything below requires the entrant's credentials or account action. Do not su
 
 ## 1. Generate the required GPT-5.6 evidence
 
+Preferred path when the Codex CLI is authenticated:
+
+```bash
+pnpm run eval:codex
+```
+
+This runs only the fixed fixture from an isolated temporary directory and records its separate Codex eval session. If the Codex service is unavailable, use the API-key path below.
+
 From `redflame/`, load an authorized API key without putting it in Git or shell history:
 
 ```bash
@@ -14,7 +22,7 @@ export OPENAI_MODEL=gpt-5.6
 pnpm run eval:live
 ```
 
-Review `evals/live/latest.json`. It must say `mode: live_eval`, `model: gpt-5.6`, and include a real timestamp, response ID, fixture hash, and structured result. It must not contain a secret.
+Review `evals/live/latest.json`. It must say `mode: live_eval`, use `gpt-5.6` or `gpt-5.6-sol`, and include a real timestamp, provider request/session ID, fixture hash, and structured result. It must not contain a secret.
 
 ```bash
 git add evals/live/latest.json
