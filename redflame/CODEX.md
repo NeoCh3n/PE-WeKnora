@@ -77,7 +77,7 @@ The first ambiguous-definition E2E test stayed forever in `CLASSIFYING`. The eff
 - Verification: the script creates an isolated temporary directory, allowlists only `gpt-5.6` and `gpt-5.6-sol`, requests strict structured output, validates it through the production Zod contract, requires the expected reason and confidence, captures the separate Codex session ID, and writes nothing on failure. Unit tests and the production TypeScript build pass.
 - Service evidence: bounded attempts started sessions `019f6bc2-408c-7952-bbd6-40b43092be30`, `019f6bc9-0bcc-7933-a8ce-fcf1fac654f8`, `019f6bcc-343e-7880-acc1-b4683e54a6a1`, and `019f6bcf-8424-7332-bcf1-bad4bf70437f`. Each Responses stream disconnected before returning a result, so none is claimed as a successful GPT-5.6 eval and `latest.json` remains unchanged.
 - Outcome: PASS for the fail-closed implementation; successful model evidence remains pending service availability or authorized API access.
-- Commit: pending.
+- Commit: `6c81691b`.
 
 ## Verification log
 
