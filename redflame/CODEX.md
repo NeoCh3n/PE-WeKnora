@@ -91,4 +91,4 @@ next build: PASS
 
 - Codex `/feedback` session ID: MISSING, submission blocker.
 - Judge-visible Codex session links: not claimed.
-- Public deployment: `https://redflame-plum.vercel.app` · Vercel deployment `dpl_CNXc1tz7M6znwK7KGLPdwxYA2Mzq` · READY. Runtime application code is present in pushed commit `67ee47a3`; both browser paths passed against this deployment.
+- Public deployment: `https://redflame-plum.vercel.app` · Vercel deployment `dpl_2QUcQgLDxR7zHGwu58Mrh6Cg3785` · READY. Runtime application code is present in pushed commit `0cc37ae2`; both browser paths passed against this deployment, and the unconfigured semantic endpoint returned fail-closed `INVESTIGATE` state.
