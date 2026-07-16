@@ -24,7 +24,7 @@ This file is evidence of bounded engineering work, not a prompt dump. Every entr
 - Files: `components/DecisionReview.tsx`, `app/globals.css`, `lib/review-state.ts`, `tests/review-state.test.ts`, `e2e/decision-flow.spec.ts`.
 - Verification: production build plus Playwright at 1440×900.
 - Outcome: PASS after one real correction described below.
-- Commit: `daa1dcb2`.
+- Commits: `daa1dcb2`, `45d736c3`.
 
 ### Real correction caught by browser testing
 
@@ -36,7 +36,7 @@ The first ambiguous-definition E2E test stayed forever in `CLASSIFYING`. The eff
 - Files: `vitest.config.ts`, `playwright.config.ts`, `package.json`, `pnpm-lock.yaml`, `.github/workflows/redflame-ci.yml`.
 - Verification: 16 deterministic tests, two browser paths, and `next build`.
 - Outcome: PASS locally. GitHub-hosted CI is pending push.
-- Commits: `474a94f8`, `daa1dcb2`, `27f89547`.
+- Commits: `474a94f8`, `daa1dcb2`, `27f89547`, `45d736c3`.
 
 ## Entry 5 · Audit judge-visible claims
 
