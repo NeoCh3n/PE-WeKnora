@@ -122,6 +122,5 @@ For an investment professional, the value is a reviewable answer to “what must
 - [ ] Add Codex `/feedback` session ID.
 - [ ] Record the final 148-second narration using [`DEMO_SCRIPT.md`](./DEMO_SCRIPT.md).
 - [ ] Upload the public video and add its URL to README and Devpost.
-- [ ] Confirm GitHub Actions is green.
+- [x] Confirm GitHub Actions is green: [run 29513856511](https://github.com/NeoCh3n/PE-WeKnora/actions/runs/29513856511).
 - [ ] Optionally add permitted user evidence; otherwise keep the unvalidated wording.
-

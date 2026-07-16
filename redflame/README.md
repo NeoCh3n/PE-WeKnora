@@ -107,6 +107,7 @@ This hackathon build intentionally does not parse arbitrary Excel files, execute
 | Artifact | Status |
 |---|---|
 | Local production build | PASS |
+| GitHub CI | PASS · [run 29513856511](https://github.com/NeoCh3n/PE-WeKnora/actions/runs/29513856511) |
 | Deterministic tests | PASS |
 | Playwright Accept/HOLD/Receipt/Reset path | PASS |
 | Playwright semantic-block path | PASS |
