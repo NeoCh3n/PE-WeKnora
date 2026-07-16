@@ -101,7 +101,7 @@ The target user is a PE Associate preparing an IC memo who receives a revised se
 
 [`CODEX.md`](./CODEX.md) records the bounded Codex tasks, files changed, verification commands, real correction, and implementation commit hashes. The required `/feedback` ID remains a submission blocker until generated.
 
-The judge-ready narrative and timed walkthrough are in [`SUBMISSION.md`](./SUBMISSION.md) and [`DEMO_SCRIPT.md`](./DEMO_SCRIPT.md).
+The judge-ready narrative and timed walkthrough are in [`SUBMISSION.md`](./SUBMISSION.md) and [`DEMO_SCRIPT.md`](./DEMO_SCRIPT.md). Entrant-only credential and account steps are isolated in [`FINALIZE.md`](./FINALIZE.md).
 
 ## Scope
 

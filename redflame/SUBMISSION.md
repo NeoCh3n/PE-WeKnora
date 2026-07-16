@@ -124,6 +124,8 @@ For an investment professional, the value is a reviewable answer to “what must
 
 ## Final submission blockers
 
+Follow the exact credential-safe sequence in [`FINALIZE.md`](./FINALIZE.md).
+
 - [ ] **Eligibility gate:** run `pnpm run eval:live` with authorized GPT-5.6 access, review and commit `evals/live/latest.json`, redeploy, then regenerate the demo so its audio and visible badge demonstrate actual GPT-5.6 usage.
 - [ ] In this primary Codex build task, enter `/feedback`, then copy the generated Session ID into `CODEX.md` and the Devpost form. The ambient task UUID is not a substitute.
 - [x] Generate and verify a local timing fallback: `artifacts/redflame-demo.mp4` · 149.1 seconds · 1440×900 · H.264/AAC. It must be regenerated after the real GPT-5.6 eval.
