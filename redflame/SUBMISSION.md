@@ -6,6 +6,8 @@
 
 **Tagline:** Pull requests and CI tests for investment decisions.
 
+**Track:** Work & Productivity
+
 **Public app:** https://redflame-plum.vercel.app
 
 **Source branch:** https://github.com/NeoCh3n/PE-WeKnora/tree/codex/redflame-decision-ci/redflame
@@ -19,6 +21,10 @@ Investment teams already use AI to summarize diligence and draft IC memos. The d
 The target workflow is a PE Associate preparing an IC memo when a revised seller model changes an assumption such as exit EBITDA. Existing AI workflows can search deal materials, preserve source lineage, update models, and regenerate memos. RedFlame tests a narrower control question: **does the newly accepted evidence invalidate a decision the team previously believed had passed?**
 
 Current impact status must remain explicit: this is an unvalidated workflow hypothesis until direct user conversations are completed. Do not insert invented time savings or quotations.
+
+## Submission-period disclosure
+
+The repository is a pre-existing public WeKnora fork. The `redflame/` application, its deterministic compiler, tests, evidence fixtures, UI, documentation, deployment, and demo automation were newly created for OpenAI Build Week on the `codex/redflame-decision-ci` branch. The existing WeKnora application was not represented as new work and is not required to run the RedFlame demo.
 
 ## What it does
 
@@ -119,7 +125,7 @@ For an investment professional, the value is a reviewable answer to “what must
 ## Final submission blockers
 
 - [ ] **Eligibility gate:** run `pnpm run eval:live` with authorized GPT-5.6 access, review and commit `evals/live/latest.json`, redeploy, then regenerate the demo so its audio and visible badge demonstrate actual GPT-5.6 usage.
-- [ ] Add Codex `/feedback` session ID.
+- [ ] In this primary Codex build task, enter `/feedback`, then copy the generated Session ID into `CODEX.md` and the Devpost form. The ambient task UUID is not a substitute.
 - [x] Generate and verify a local timing fallback: `artifacts/redflame-demo.mp4` · 149.1 seconds · 1440×900 · H.264/AAC. It must be regenerated after the real GPT-5.6 eval.
 - [ ] Review the generated MP4, or record a human-voice take using [`DEMO_SCRIPT.md`](./DEMO_SCRIPT.md).
 - [ ] Upload the selected video publicly and add its URL to README and Devpost.

@@ -2,6 +2,8 @@
 
 RedFlame is **pull requests and CI tests for investment decisions**.
 
+OpenAI Build Week track: **Work & Productivity**.
+
 When a new seller-model snapshot arrives after an IC memo has been drafted, RedFlame compares the evidence, recompiles only the affected return path, reruns versioned investment hurdles, marks dependent memo assertions stale, and asks a human to resolve the evidence. Accepting evidence never approves the investment.
 
 > Submission status: the public-safe build is deployed at **[redflame-plum.vercel.app](https://redflame-plum.vercel.app)**. Final video, live GPT eval, and Codex `/feedback` ID are not yet available and are not claimed below.
@@ -104,6 +106,8 @@ The judge-ready narrative and timed walkthrough are in [`SUBMISSION.md`](./SUBMI
 ## Scope
 
 This hackathon build intentionally does not parse arbitrary Excel files, execute Excel formulas, provide authentication, support multiple users, persist server audit history, edit a full IC memo, or approve an investment. The controlled fixtures validate the decision-propagation mechanism without pretending the ingestion layer is solved.
+
+This repository fork existed before the submission period. The complete `redflame/` application and its evidence trail are new Build Week work on `codex/redflame-decision-ci`; the pre-existing WeKnora product is not claimed as part of the hackathon implementation.
 
 ## Submission evidence gate
 
