@@ -4,11 +4,11 @@ import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { promisify } from "node:util";
-import { isConfirmedDefinitionChange, semanticFixture, semanticModelSchema } from "../lib/semantic-model";
+import { assertAllowedGpt56Model, sessionIdFromJsonl, validateCodexEvalResult } from "../lib/codex-eval";
+import { semanticFixture } from "../lib/semantic-model";
 
 const run = promisify(execFile);
 const model = process.env.OPENAI_MODEL || "gpt-5.6-luna";
-const supportedModels = new Set(["gpt-5.6", "gpt-5.6-sol", "gpt-5.6-terra", "gpt-5.6-luna"]);
 
 const outputSchema = {
   $schema: "https://json-schema.org/draft/2020-12/schema",
@@ -34,21 +34,8 @@ Approved note: ${semanticFixture.approvedNote}
 Candidate note: ${semanticFixture.candidateNote}
 Determine whether the definitions materially changed. Return only the JSON object required by the output schema. Do not calculate, repeat, or introduce numeric financial claims.`;
 
-function sessionIdFromJsonl(stdout: string): string {
-  for (const line of stdout.split("\n")) {
-    if (!line.trim()) continue;
-    try {
-      const event = JSON.parse(line) as { type?: string; thread_id?: string };
-      if (event.type === "thread.started" && typeof event.thread_id === "string") return event.thread_id;
-    } catch {
-      // Non-JSON diagnostic lines are not evidence and can be ignored.
-    }
-  }
-  throw new Error("Codex did not emit a thread.started session ID");
-}
-
 async function main() {
-  if (!supportedModels.has(model)) throw new Error(`OPENAI_MODEL must be an official GPT-5.6 family model, received: ${model}`);
+  assertAllowedGpt56Model(model);
 
   const isolatedDir = await mkdtemp(path.join(tmpdir(), "redflame-gpt56-"));
   const schemaPath = path.join(isolatedDir, "output.schema.json");
@@ -74,9 +61,7 @@ async function main() {
     if (stderr.trim()) console.error(stderr.trim());
     const codexSessionId = sessionIdFromJsonl(stdout);
     const rawResult = JSON.parse(await readFile(resultPath, "utf8"));
-    const result = semanticModelSchema.parse(rawResult);
-    if (!isConfirmedDefinitionChange(result)) throw new Error("Eval failed: expected a high-confidence definition change");
-    if (result.reason_code !== "adjustment_treatment_changed") throw new Error("Eval failed: unexpected reason_code");
+    const result = validateCodexEvalResult(rawResult);
 
     const timestamp = new Date().toISOString();
     const artifact = {
