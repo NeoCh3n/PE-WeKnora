@@ -1,0 +1,14 @@
+{
+  "mode": "recorded_example_not_live",
+  "timestamp": "2026-07-16T00:00:00Z",
+  "model": "gpt-5.6",
+  "fixtureId": "candidate-ambiguous-definition",
+  "fixtureHash": "example-only-run-eval-live-to-replace",
+  "result": {
+    "definition_changed": true,
+    "reason_code": "adjustment_treatment_changed",
+    "explanation": "The source notes treat transformation adjustments differently, so the EBITDA definitions are not directly comparable.",
+    "confidence": 0.96
+  },
+  "notice": "This committed artifact is an explicitly labeled UI fallback example. It is not evidence that a live model request ran."
+}
