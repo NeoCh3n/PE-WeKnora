@@ -79,6 +79,14 @@ The first ambiguous-definition E2E test stayed forever in `CLASSIFYING`. The eff
 - Outcome: PASS for the fail-closed implementation; successful model evidence remains pending service availability or authorized API access.
 - Commit: `6c81691b`.
 
+## Entry 10 · Make model evidence judge-visible
+
+- Task: Ensure a successful GPT-5.6 run can be verified from the product surface rather than only by inspecting a repository JSON file.
+- Files: `components/DecisionReview.tsx`, `app/api/semantic/route.ts`, and `app/globals.css`.
+- Verification: verified recorded artifacts expose provider, Codex session or OpenAI response ID, and a truncated fixture SHA-256; live runtime responses expose the OpenAI response ID; placeholders expose none of these identifiers. Unit tests and production build pass.
+- Outcome: PASS for implementation; the fields remain hidden until a real successful eval exists.
+- Commit: `1e39d4b5`.
+
 ## Verification log
 
 ```text
