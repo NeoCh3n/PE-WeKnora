@@ -8,3 +8,4 @@ coverage/
 evals/live/*.json
 !evals/live/recorded-example.json
 .vercel
+artifacts/

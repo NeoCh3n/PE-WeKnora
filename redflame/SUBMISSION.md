@@ -120,7 +120,8 @@ For an investment professional, the value is a reviewable answer to “what must
 
 - [ ] Run `pnpm run eval:live` with authorized GPT-5.6 access and commit the timestamped artifact, or keep the recorded mode and accurately describe it.
 - [ ] Add Codex `/feedback` session ID.
-- [ ] Record the final 148-second narration using [`DEMO_SCRIPT.md`](./DEMO_SCRIPT.md).
-- [ ] Upload the public video and add its URL to README and Devpost.
+- [x] Generate and verify the local narrated demo: `artifacts/redflame-demo.mp4` · 149.1 seconds · 1440×900 · H.264/AAC.
+- [ ] Review the generated MP4, or record a human-voice take using [`DEMO_SCRIPT.md`](./DEMO_SCRIPT.md).
+- [ ] Upload the selected video publicly and add its URL to README and Devpost.
 - [x] Confirm GitHub Actions is green: [run 29513856511](https://github.com/NeoCh3n/PE-WeKnora/actions/runs/29513856511).
 - [ ] Optionally add permitted user evidence; otherwise keep the unvalidated wording.

@@ -39,7 +39,10 @@ pnpm test          # deterministic unit and API contract tests
 pnpm run test:e2e  # two Playwright product paths
 pnpm run build     # production build
 pnpm run eval:live # real model eval; requires OPENAI_API_KEY
+pnpm run record:demo # macOS: generate a narrated MP4 from the public app
 ```
+
+`record:demo` uses Playwright, the macOS `say` command, and ffmpeg (default path `/opt/homebrew/bin/ffmpeg`). It writes an ignored local artifact to `artifacts/redflame-demo.mp4`; override `REDFLAME_URL`, `DEMO_VOICE`, `DEMO_SPEECH_RATE`, or the ffmpeg paths as needed.
 
 Golden outputs:
 
@@ -113,9 +116,10 @@ This hackathon build intentionally does not parse arbitrary Excel files, execute
 | Playwright semantic-block path | PASS |
 | Resolution Receipt screenshot | PASS · [`docs/resolution-receipt.png`](./docs/resolution-receipt.png) |
 | Public Vercel URL | PASS · [redflame-plum.vercel.app](https://redflame-plum.vercel.app) |
+| Local narrated demo MP4 | PASS · 149.1 seconds · 1440×900 · H.264/AAC · intentionally not committed |
 | Timestamped live GPT eval | MISSING; recorded example is labeled not live |
 | Codex `/feedback` ID | MISSING |
-| Public video under three minutes | MISSING |
+| Public video under three minutes | MISSING; local upload-ready MP4 exists |
 | Direct user validation | MISSING; impact is labeled unvalidated |
 
 ## License

@@ -54,6 +54,14 @@ The first ambiguous-definition E2E test stayed forever in `CLASSIFYING`. The eff
 - Outcome: PASS. The corrected build was deployed and both Playwright paths passed against the public URL.
 - Commit: `5d5af2a4`.
 
+## Entry 7 · Make the demo reproducible
+
+- Task: Replace a fragile manual recording sequence with a repeatable public-app walkthrough and produce an upload-ready local fallback.
+- Files: `scripts/record-demo.ts`, `package.json`, `.gitignore`, `DEMO_SCRIPT.md`, and submission documentation.
+- Verification: generated MP4 is 149.1 seconds, 1440×900, H.264 video plus AAC audio, and 5.3 MB; six-frame visual contact sheet confirms the main review and HOLD receipt states.
+- Outcome: PASS. The MP4 remains an ignored local artifact pending human review and public upload.
+- Commit: pending.
+
 ## Verification log
 
 ```text

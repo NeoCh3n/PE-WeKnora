@@ -66,3 +66,7 @@ End on the HOLD receipt.
 - Keep the cursor away from numbers while speaking.
 - Record three full takes; accept only a take at or below 165 seconds.
 - Verify the uploaded video is public and under three minutes.
+
+## Automated fallback
+
+On macOS, `pnpm run record:demo` reproduces the public product flow with synchronized system narration and writes `artifacts/redflame-demo.mp4`. The generated fallback is useful for timing and as a submission backup; review it before upload and prefer a clear human-voice take when time permits.
