@@ -68,7 +68,7 @@ The first ambiguous-definition E2E test stayed forever in `CLASSIFYING`. The eff
 - Files: `scripts/eval-live.ts`, `evals/live/latest.json`, `components/DecisionReview.tsx`, `scripts/record-demo.ts`, and submission documentation.
 - Verification: placeholder mode cannot display a verified model badge; a successful live eval writes model, timestamp, response ID, fixture hash, and structured result to both an immutable timestamped file and judge-visible `latest.json`; the recorder changes its narration only when that artifact is present.
 - Outcome: PASS for implementation. Actual GPT-5.6 execution remains blocked on authorized API access and is clearly marked as the primary eligibility gate.
-- Commit: pending.
+- Commit: `2b77ccfa`.
 
 ## Verification log
 
