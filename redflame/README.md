@@ -96,6 +96,8 @@ The target user is a PE Associate preparing an IC memo who receives a revised se
 
 [`CODEX.md`](./CODEX.md) records the bounded Codex tasks, files changed, verification commands, real correction, and implementation commit hashes. The required `/feedback` ID remains a submission blocker until generated.
 
+The judge-ready narrative and timed walkthrough are in [`SUBMISSION.md`](./SUBMISSION.md) and [`DEMO_SCRIPT.md`](./DEMO_SCRIPT.md).
+
 ## Scope
 
 This hackathon build intentionally does not parse arbitrary Excel files, execute Excel formulas, provide authentication, support multiple users, persist server audit history, edit a full IC memo, or approve an investment. The controlled fixtures validate the decision-propagation mechanism without pretending the ingestion layer is solved.
