@@ -95,7 +95,7 @@ For an investment professional, the value is a reviewable answer to “what must
 
 ### Technological Implementation
 
-- 17 deterministic/API contract tests.
+- 20 deterministic/API/evidence contract tests.
 - 2 product-level Playwright paths passing locally and against production.
 - Fresh Vercel dependency install and production build succeeded.
 - Fixed-schema, allowlisted, rate-limited, fail-closed model boundary.

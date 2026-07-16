@@ -34,7 +34,7 @@ The first ambiguous-definition E2E test stayed forever in `CLASSIFYING`. The eff
 
 - Task: Separate deterministic unit tests from Playwright, pin a Next-compatible TypeScript version, and prove a clean production build.
 - Files: `vitest.config.ts`, `playwright.config.ts`, `package.json`, `pnpm-lock.yaml`, `.github/workflows/redflame-ci.yml`.
-- Verification: 17 deterministic tests, two browser paths, and `next build`.
+- Verification: 20 deterministic tests, two browser paths, and `next build`.
 - Outcome: PASS locally. Vercel installed from the lockfile and completed the production build. GitHub Actions run [`29515229913`](https://github.com/NeoCh3n/PE-WeKnora/actions/runs/29515229913) completed successfully for the auditable model-evidence build on the public branch.
 - Commits: `474a94f8`, `daa1dcb2`, `27f89547`, `45d736c3`.
 
@@ -87,10 +87,18 @@ The first ambiguous-definition E2E test stayed forever in `CLASSIFYING`. The eff
 - Outcome: PASS for implementation; the fields remain hidden until a real successful eval exists.
 - Commit: `1e39d4b5`.
 
+## Entry 11 · Test the Codex eval evidence gate
+
+- Task: Add direct tests for the credentialless eval path's model allowlist, JSONL session extraction, and fail-closed result validation.
+- Files: `lib/codex-eval.ts`, `scripts/eval-codex.ts`, and `tests/codex-eval.test.ts`.
+- Verification: official GPT-5.6 family IDs pass; non-GPT-5.6 models fail; missing session IDs fail; low confidence, unchanged definitions, and unexpected reason codes fail. The full suite now passes 20 tests across six files.
+- Outcome: PASS.
+- Commit: `1b276ade`.
+
 ## Verification log
 
 ```text
-vitest: 17 tests passed
+vitest: 20 tests passed
 playwright: 2 paths passed
 next build: PASS
 ```
