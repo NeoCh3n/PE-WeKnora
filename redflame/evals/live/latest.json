@@ -1,4 +1,4 @@
 {
   "mode": "missing",
-  "notice": "Run pnpm run eval:live with authorized GPT-5.6 API access to replace this placeholder. This file is not model-run evidence."
+  "notice": "Run pnpm run eval:codex with authenticated Codex or pnpm run eval:live with authorized API access to replace this placeholder. This file is not model-run evidence."
 }
