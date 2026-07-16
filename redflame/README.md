@@ -1,0 +1,120 @@
+# RedFlame Decision CI
+
+RedFlame is **pull requests and CI tests for investment decisions**.
+
+When a new seller-model snapshot arrives after an IC memo has been drafted, RedFlame compares the evidence, recompiles only the affected return path, reruns versioned investment hurdles, marks dependent memo assertions stale, and asks a human to resolve the evidence. Accepting evidence never approves the investment.
+
+> Submission status: runnable local build. Public deployment URL, final video, live GPT eval, and Codex `/feedback` ID are not yet available and are not claimed below.
+
+![RedFlame Decision PR](./docs/decision-pr.png)
+
+## The three-minute story
+
+1. Approved Decision v3 clears 2.50x MOIC and 20% IRR.
+2. Candidate Evidence v4 changes FY2030 Adjusted EBITDA from $24m to $20m.
+3. Deterministic code recompiles `$20m × 8.0x − $12m`, producing $148m exit equity.
+4. Against locked $60m entry equity, MOIC becomes 2.47x and five-year IRR becomes 19.79%.
+5. Both return tests fail. Customer concentration remains `PASS · UNAFFECTED`.
+6. Accepting the fact produces a demo-local Resolution Receipt, keeps the deal on `HOLD`, and creates two draft memo revisions.
+7. A separate ambiguous-language fixture demonstrates the model boundary: GPT may classify semantic definition changes, but it never calculates or changes a hurdle result.
+
+## Run locally
+
+Requirements: Node.js 22+ and pnpm 11.9.0.
+
+```bash
+cd redflame
+pnpm install --frozen-lockfile
+pnpm dev
+```
+
+Open `http://localhost:3000`.
+
+The default public-safe mode does not call a model. It shows a committed artifact labeled `RECORDED GPT-5.6 EVAL · NOT LIVE`. To enable the constrained live endpoint, copy `.env.example` to `.env.local` and configure OpenAI plus Upstash Redis. The endpoint accepts one committed fixture ID, not arbitrary prompts.
+
+## Verification
+
+```bash
+pnpm test          # deterministic unit and API contract tests
+pnpm run test:e2e  # two Playwright product paths
+pnpm run build     # production build
+pnpm run eval:live # real model eval; requires OPENAI_API_KEY
+```
+
+Golden outputs:
+
+| Output | Approved v3 | Candidate v4 |
+|---|---:|---:|
+| Exit EBITDA | $24.00m | $20.00m |
+| Exit EV | $192.00m | $160.00m |
+| Exit equity | $180.00m | $148.00m |
+| MOIC | 3.00x | 2.47x |
+| Five-year IRR | 24.57% | 19.79% |
+| MOIC hurdle | PASS | FAIL |
+| IRR hurdle | PASS | FAIL |
+| Customer concentration | PASS | PASS · UNAFFECTED |
+
+This is a simplified no-interim-cash-flow return bridge: one $60m entry outflow, one exit inflow exactly five years later, no interim distributions or additional equity, and $12m of exit net debt. Tests compare unrounded decimal values; displays round half-up.
+
+## Architecture and trust boundary
+
+```text
+Known JSON fixtures
+  → structured semantic pre-check
+  → deterministic return compiler
+  → dependency-selected hurdle tests
+  → stale memo assertions
+  → human evidence resolution
+  → demo-local receipt + draft memo
+```
+
+Deterministic TypeScript owns all values, units, periods, formulas, dependency traversal, thresholds, PASS/FAIL results, and memo state. GPT is called only for one ambiguous source-language fixture. It returns a bounded reason code, non-numeric explanation, and confidence. Invalid output, low confidence, timeout, missing rate limiting, or missing credentials fails closed to `INVESTIGATE`.
+
+The Resolution Receipt is deliberately labeled **demo-local, unsigned, and not server-persisted**. It proves a complete interaction, not production auditability.
+
+## Adjacent-product capability matrix
+
+This matrix reports only what was found in the linked public product documentation reviewed on July 16, 2026. `Not found` means the reviewed page did not document the capability; it is not a claim that the product lacks it.
+
+| Publicly documented capability | Blueflame | F2 | Omega Intelligence | ReturnCatalyst | RedFlame demo |
+|---|---|---|---|---|---|
+| Update or rerun work as deal evidence changes | [Running memo updates](https://blueflame.ai/solutions/private-equity) | [Live memos update as assumptions change](https://f2.ai/blog) | [Assumption change tracking](https://omegaintelligence.ai/platform) | [Rerun as diligence lands](https://www.returncatalyst.ai/solutions/ic-memo-automation) | Demonstrated |
+| Calculation dependency or formula lineage | Not found on reviewed page | [Formula-level fidelity and cell dependencies](https://f2.ai/private-equity) | Context graph documented; calculation propagation not evaluated | [Model-to-memo references](https://www.returncatalyst.ai/blog/ic-memo-automation) | Demonstrated |
+| Versioned executable investment hurdle tests | Not found on reviewed page | Not found on reviewed page | Not found on reviewed page | Not found on reviewed page | Demonstrated |
+| Mark dependent memo assertions stale | Not found on reviewed page | Not found on reviewed page | Not found on reviewed page | Referenced locations are traceable; stale state not found | Demonstrated |
+| Human Accept / Keep / Investigate evidence resolution | Human review documented; this workflow not found | Not found on reviewed page | [Approvals and reasons tracked](https://omegaintelligence.ai/platform) | Partner review documented; this workflow not found | Demonstrated |
+
+The novelty claim is narrow: RedFlame demonstrates these five capabilities as one evidence-to-decision control loop. It does not claim the adjacent products cannot implement them.
+
+## Impact evidence
+
+**Current status: unvalidated workflow hypothesis.** Direct user validation is in progress. This repository does not claim measured time savings, adoption intent, or user quotations.
+
+The target user is a PE Associate preparing an IC memo who receives a revised seller model and must reconcile the new evidence against returns, hurdle decisions, and memo language. The demo tests whether a visible evidence-to-decision propagation path makes that reconciliation safer and faster. It does not establish market demand.
+
+## Codex usage
+
+[`CODEX.md`](./CODEX.md) records the bounded Codex tasks, files changed, verification commands, real correction, and implementation commit hashes. The required `/feedback` ID remains a submission blocker until generated.
+
+## Scope
+
+This hackathon build intentionally does not parse arbitrary Excel files, execute Excel formulas, provide authentication, support multiple users, persist server audit history, edit a full IC memo, or approve an investment. The controlled fixtures validate the decision-propagation mechanism without pretending the ingestion layer is solved.
+
+## Submission evidence gate
+
+| Artifact | Status |
+|---|---|
+| Local production build | PASS |
+| Deterministic tests | PASS |
+| Playwright Accept/HOLD/Receipt/Reset path | PASS |
+| Playwright semantic-block path | PASS |
+| Resolution Receipt screenshot | PASS · [`docs/resolution-receipt.png`](./docs/resolution-receipt.png) |
+| Public Vercel URL | MISSING |
+| Timestamped live GPT eval | MISSING; recorded example is labeled not live |
+| Codex `/feedback` ID | MISSING |
+| Public video under three minutes | MISSING |
+| Direct user validation | MISSING; impact is labeled unvalidated |
+
+## License
+
+RedFlame is provided under the repository's existing license for this hackathon submission.

@@ -1,0 +1,33 @@
+name: RedFlame CI
+
+on:
+  push:
+    paths:
+      - "redflame/**"
+      - ".github/workflows/redflame-ci.yml"
+  pull_request:
+    paths:
+      - "redflame/**"
+      - ".github/workflows/redflame-ci.yml"
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: redflame
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.9.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: redflame/pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm test
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm run test:e2e
+      - run: pnpm run build
