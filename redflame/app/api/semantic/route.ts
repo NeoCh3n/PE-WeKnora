@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
     if (!limit.success) return unavailable("Rate limit exceeded.", 429);
 
     const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY, timeout: 15_000, maxRetries: 0 });
-    const model = process.env.OPENAI_MODEL || "gpt-5.6";
+    const model = process.env.OPENAI_MODEL || "gpt-5.6-luna";
     const response = await client.responses.parse({
       model,
       input: [

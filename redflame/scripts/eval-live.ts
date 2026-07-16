@@ -7,7 +7,7 @@ import { isConfirmedDefinitionChange, semanticFixture, semanticModelSchema, sema
 
 async function main() {
   if (!process.env.OPENAI_API_KEY) throw new Error("OPENAI_API_KEY is required for eval:live");
-  const model = process.env.OPENAI_MODEL || "gpt-5.6";
+  const model = process.env.OPENAI_MODEL || "gpt-5.6-luna";
   const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY, timeout: 30_000, maxRetries: 0 });
   const response = await client.responses.parse({
     model,

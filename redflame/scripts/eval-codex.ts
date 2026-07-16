@@ -7,8 +7,8 @@ import { promisify } from "node:util";
 import { isConfirmedDefinitionChange, semanticFixture, semanticModelSchema } from "../lib/semantic-model";
 
 const run = promisify(execFile);
-const model = process.env.OPENAI_MODEL || "gpt-5.6-sol";
-const supportedModels = new Set(["gpt-5.6", "gpt-5.6-sol"]);
+const model = process.env.OPENAI_MODEL || "gpt-5.6-luna";
+const supportedModels = new Set(["gpt-5.6", "gpt-5.6-sol", "gpt-5.6-terra", "gpt-5.6-luna"]);
 
 const outputSchema = {
   $schema: "https://json-schema.org/draft/2020-12/schema",
@@ -48,7 +48,7 @@ function sessionIdFromJsonl(stdout: string): string {
 }
 
 async function main() {
-  if (!supportedModels.has(model)) throw new Error(`OPENAI_MODEL must be gpt-5.6 or gpt-5.6-sol, received: ${model}`);
+  if (!supportedModels.has(model)) throw new Error(`OPENAI_MODEL must be an official GPT-5.6 family model, received: ${model}`);
 
   const isolatedDir = await mkdtemp(path.join(tmpdir(), "redflame-gpt56-"));
   const schemaPath = path.join(isolatedDir, "output.schema.json");

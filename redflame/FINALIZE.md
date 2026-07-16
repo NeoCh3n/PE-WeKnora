@@ -18,11 +18,11 @@ From `redflame/`, load an authorized API key without putting it in Git or shell 
 read -s "OPENAI_API_KEY?OpenAI API key: "
 export OPENAI_API_KEY
 echo
-export OPENAI_MODEL=gpt-5.6
+export OPENAI_MODEL=gpt-5.6-luna
 pnpm run eval:live
 ```
 
-Review `evals/live/latest.json`. It must say `mode: live_eval`, use `gpt-5.6` or `gpt-5.6-sol`, and include a real timestamp, provider request/session ID, fixture hash, and structured result. It must not contain a secret.
+Review `evals/live/latest.json`. It must say `mode: live_eval`, use an official GPT-5.6 family model, and include a real timestamp, provider request/session ID, fixture hash, and structured result. It must not contain a secret.
 
 ```bash
 git add evals/live/latest.json
