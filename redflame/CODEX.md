@@ -60,7 +60,7 @@ The first ambiguous-definition E2E test stayed forever in `CLASSIFYING`. The eff
 - Files: `scripts/record-demo.ts`, `package.json`, `.gitignore`, `DEMO_SCRIPT.md`, and submission documentation.
 - Verification: generated MP4 is 149.1 seconds, 1440×900, H.264 video plus AAC audio, and 5.3 MB; six-frame visual contact sheet confirms the main review and HOLD receipt states.
 - Outcome: PASS. The MP4 remains an ignored local artifact pending human review and public upload.
-- Commit: pending.
+- Commit: `d6e41d6d`.
 
 ## Verification log
 
