@@ -7,6 +7,12 @@ export const semanticModelSchema = z.object({
   confidence: z.number().min(0).max(1),
 });
 
+export type SemanticModelResult = z.infer<typeof semanticModelSchema>;
+
+export function isConfirmedDefinitionChange(result: SemanticModelResult): boolean {
+  return result.definition_changed && result.confidence >= 0.85;
+}
+
 export const semanticFixture = {
   id: "candidate-ambiguous-definition",
   metricId: "exit_ebitda_fy2030",

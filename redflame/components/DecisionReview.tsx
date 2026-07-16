@@ -11,7 +11,7 @@ const STORAGE_KEY = "redflame-review-v1";
 type EvidenceView = "value" | "ambiguous";
 type ModelState =
   | { status: "idle" | "pending" }
-  | { status: "live" | "recorded"; explanation: string; timestamp: string; reasonCode: string }
+  | { status: "live" | "recorded"; explanation: string; timestamp: string; reasonCode: string; modelName?: string }
   | { status: "unavailable"; explanation: string };
 
 const recordedEval = {
@@ -94,6 +94,7 @@ export function DecisionReview() {
             explanation: body.result.explanation,
             timestamp: body.timestamp,
             reasonCode: body.result.reason_code,
+            modelName: typeof body.model === "string" ? body.model : "OPENAI MODEL",
           });
           return;
         }
@@ -201,7 +202,7 @@ export function DecisionReview() {
                 {model.status === "pending" && <div className="model-state model-pending"><span className="spinner" /> CLASSIFYING AMBIGUOUS DEFINITION</div>}
                 {(model.status === "live" || model.status === "recorded") && (
                   <div className="model-result">
-                    <Badge tone="warning">{model.status === "live" ? "LIVE GPT-5.6" : "RECORDED GPT-5.6 EVAL · NOT LIVE"}</Badge>
+                    <Badge tone="warning">{model.status === "live" ? `LIVE ${model.modelName}` : "RECORDED EVAL FIXTURE · NOT LIVE"}</Badge>
                     <strong>DEFINITION CHANGED · COMPARISON BLOCKED</strong>
                     <p>{model.explanation}</p>
                     <small>{model.reasonCode} · {model.timestamp}</small>

@@ -30,7 +30,7 @@ pnpm dev
 
 Open `http://localhost:3000`.
 
-The default public-safe mode does not call a model. It shows a committed artifact labeled `RECORDED GPT-5.6 EVAL · NOT LIVE`. To enable the constrained live endpoint, copy `.env.example` to `.env.local` and configure OpenAI plus Upstash Redis. The endpoint accepts one committed fixture ID, not arbitrary prompts.
+The default public-safe mode does not call a model. It shows a committed fallback labeled `RECORDED EVAL FIXTURE · NOT LIVE`; that fixture is not presented as model-run evidence. To enable the constrained live endpoint, copy `.env.example` to `.env.local` and configure OpenAI plus Upstash Redis. The endpoint accepts one committed fixture ID, not arbitrary prompts.
 
 ## Verification
 

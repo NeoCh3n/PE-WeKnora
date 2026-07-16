@@ -3,7 +3,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import OpenAI from "openai";
 import { zodTextFormat } from "openai/helpers/zod";
-import { semanticFixture, semanticModelSchema, semanticSystemPrompt, semanticUserPrompt } from "../lib/semantic-model";
+import { isConfirmedDefinitionChange, semanticFixture, semanticModelSchema, semanticSystemPrompt, semanticUserPrompt } from "../lib/semantic-model";
 
 async function main() {
   if (!process.env.OPENAI_API_KEY) throw new Error("OPENAI_API_KEY is required for eval:live");
@@ -19,9 +19,8 @@ async function main() {
   });
   const result = response.output_parsed;
   if (!result) throw new Error("Model returned no parsed result");
-  if (!result.definition_changed) throw new Error("Eval failed: expected definition_changed=true");
+  if (!isConfirmedDefinitionChange(result)) throw new Error("Eval failed: expected a high-confidence definition change");
   if (result.reason_code !== "adjustment_treatment_changed") throw new Error("Eval failed: unexpected reason_code");
-  if (result.confidence < 0.85) throw new Error("Eval failed: confidence below 0.85");
   if (/\d/.test(result.explanation)) throw new Error("Eval failed: explanation contains a numeric claim");
   if (result.explanation.trim().split(/\s+/).length > 30) throw new Error("Eval failed: explanation exceeds 30 words");
 

@@ -4,7 +4,7 @@ import { Redis } from "@upstash/redis";
 import OpenAI from "openai";
 import { zodTextFormat } from "openai/helpers/zod";
 import { z } from "zod";
-import { semanticFixture, semanticModelSchema, semanticSystemPrompt, semanticUserPrompt } from "@/lib/semantic-model";
+import { isConfirmedDefinitionChange, semanticFixture, semanticModelSchema, semanticSystemPrompt, semanticUserPrompt } from "@/lib/semantic-model";
 
 export const runtime = "nodejs";
 export const maxDuration = 20;
@@ -49,8 +49,9 @@ export async function POST(request: NextRequest) {
     if (!limit.success) return unavailable("Rate limit exceeded.", 429);
 
     const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY, timeout: 15_000, maxRetries: 0 });
+    const model = process.env.OPENAI_MODEL || "gpt-5.6";
     const response = await client.responses.parse({
-      model: process.env.OPENAI_MODEL || "gpt-5.6",
+      model,
       input: [
         { role: "system", content: semanticSystemPrompt },
         { role: "user", content: semanticUserPrompt() },
@@ -58,9 +59,11 @@ export async function POST(request: NextRequest) {
       text: { format: zodTextFormat(semanticModelSchema, "semantic_definition_diff") },
     });
     const result = response.output_parsed;
-    if (!result || result.confidence < 0.85) return unavailable("Model confidence is below the review threshold.");
+    if (!result || !isConfirmedDefinitionChange(result)) {
+      return unavailable("The model did not confirm a high-confidence definition change. Route to investigation.");
+    }
     return NextResponse.json(
-      { mode: "live", timestamp: new Date().toISOString(), fixtureId: semanticFixture.id, result },
+      { mode: "live", model, timestamp: new Date().toISOString(), fixtureId: semanticFixture.id, result },
       { headers: { "cache-control": "no-store" } },
     );
   } catch (error) {

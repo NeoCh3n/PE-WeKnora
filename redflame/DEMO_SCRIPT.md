@@ -1,6 +1,6 @@
 # RedFlame Demo Script · 148-second target
 
-Rehearse the configured production mode exactly as shown. The current public deployment uses **recorded eval, not live GPT**. Do not say “live” unless the visible badge says `LIVE GPT-5.6` after a successful request.
+Rehearse the configured production mode exactly as shown. The current public deployment uses an **example fallback, not a live model result**. Do not say “live” unless the visible badge begins with `LIVE` after a successful request.
 
 ## 0–12s · Positioning
 
@@ -30,7 +30,7 @@ Point to both failed tests, then the green `UNAFFECTED` concentration test.
 
 Open `Ambiguous definition`.
 
-> This alternative wording does not carry a structured accounting basis. The public demo shows a clearly labeled recorded GPT-5.6 evaluation, not a live request. The model may classify the semantic definition, but it never calculates a number or changes a hurdle. RedFlame blocks comparison and disables Accept.
+> This alternative wording does not carry a structured accounting basis. The public demo shows a clearly labeled fallback fixture, not a live model result. In configured live mode, the model may classify the semantic definition, but it never calculates a number or changes a hurdle. RedFlame blocks comparison and disables Accept.
 
 Return to `Comparable value change`.
 
@@ -62,7 +62,7 @@ End on the HOLD receipt.
 
 - Use a 1440×900 browser viewport at 100% zoom.
 - Clear local storage and reload before recording.
-- Confirm the semantic badge says `RECORDED GPT-5.6 EVAL · NOT LIVE` unless live infrastructure is actually enabled.
+- Confirm the semantic badge says `RECORDED EVAL FIXTURE · NOT LIVE` unless live infrastructure is actually enabled.
 - Keep the cursor away from numbers while speaking.
 - Record three full takes; accept only a take at or below 165 seconds.
 - Verify the uploaded video is public and under three minutes.

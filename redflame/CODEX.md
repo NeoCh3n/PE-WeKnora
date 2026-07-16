@@ -34,7 +34,7 @@ The first ambiguous-definition E2E test stayed forever in `CLASSIFYING`. The eff
 
 - Task: Separate deterministic unit tests from Playwright, pin a Next-compatible TypeScript version, and prove a clean production build.
 - Files: `vitest.config.ts`, `playwright.config.ts`, `package.json`, `pnpm-lock.yaml`, `.github/workflows/redflame-ci.yml`.
-- Verification: 16 deterministic tests, two browser paths, and `next build`.
+- Verification: 17 deterministic tests, two browser paths, and `next build`.
 - Outcome: PASS locally. Vercel installed from the lockfile and completed the production build. GitHub Actions run [`29513856511`](https://github.com/NeoCh3n/PE-WeKnora/actions/runs/29513856511) completed successfully on the public branch.
 - Commits: `474a94f8`, `daa1dcb2`, `27f89547`, `45d736c3`.
 
@@ -46,10 +46,18 @@ The first ambiguous-definition E2E test stayed forever in `CLASSIFYING`. The eff
 - Outcome: PASS for local evidence. Both screenshots exist and unsupported external claims are marked missing. Commit hashes remain to be finalized; deployment, live eval, `/feedback`, and video require external completion.
 - Commits: evidence screenshots `daa1dcb2`; README, build record, and evidence gate `27f89547`.
 
+## Entry 6 · Close final trust gaps
+
+- Task: Audit the model boundary and judge-visible fallback language before freezing the submission candidate.
+- Files: `app/api/semantic/route.ts`, `lib/semantic-model.ts`, `components/DecisionReview.tsx`, `tests/semantic-model.test.ts`, and submission documentation.
+- Verification: model results that deny a definition change or fall below the confidence threshold are rejected; the public fallback is labeled as a fixture rather than implied model-run evidence; unit tests and production build pass.
+- Outcome: PASS locally. The public deployment remains fail-closed until the corrected build is redeployed.
+- Commit: pending.
+
 ## Verification log
 
 ```text
-vitest: 16 tests passed
+vitest: 17 tests passed
 playwright: 2 paths passed
 next build: PASS
 ```
