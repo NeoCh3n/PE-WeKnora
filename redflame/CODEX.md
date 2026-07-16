@@ -67,7 +67,7 @@ The first ambiguous-definition E2E test stayed forever in `CLASSIFYING`. The eff
 - Task: Turn the competition's model requirement into an explicit eligibility gate rather than treating a configured code path as proof of use.
 - Files: `scripts/eval-live.ts`, `evals/live/latest.json`, `components/DecisionReview.tsx`, `scripts/record-demo.ts`, and submission documentation.
 - Verification: placeholder mode cannot display a verified model badge; a successful live eval writes model, timestamp, response ID, fixture hash, and structured result to both an immutable timestamped file and judge-visible `latest.json`; the recorder changes its narration only when that artifact is present.
-- Outcome: PASS for implementation. Actual GPT-5.6 execution remains blocked on authorized API access and is clearly marked as the primary eligibility gate.
+- Outcome: PASS for implementation and public browser regression. Actual GPT-5.6 execution remains blocked on authorized API access and is clearly marked as the primary eligibility gate.
 - Commit: `2b77ccfa`.
 
 ## Verification log
@@ -82,4 +82,4 @@ next build: PASS
 
 - Codex `/feedback` session ID: MISSING, submission blocker.
 - Judge-visible Codex session links: not claimed.
-- Public deployment: `https://redflame-plum.vercel.app` · Vercel deployment `dpl_5M3x71U9vknNFaLGJqD6e5qUXEV6` · READY. Runtime application code is present in pushed commit `5d5af2a4`; both browser paths passed against this deployment.
+- Public deployment: `https://redflame-plum.vercel.app` · Vercel deployment `dpl_CNXc1tz7M6znwK7KGLPdwxYA2Mzq` · READY. Runtime application code is present in pushed commit `67ee47a3`; both browser paths passed against this deployment.
