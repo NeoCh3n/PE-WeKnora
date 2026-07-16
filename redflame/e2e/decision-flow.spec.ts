@@ -32,7 +32,7 @@ test("accepting evidence keeps failed tests, creates a local receipt, and resets
 
 test("ambiguous definitions block calculations and acceptance", async ({ page }) => {
   await page.getByRole("button", { name: "Ambiguous definition" }).click();
-  await expect(page.getByTestId("semantic-card")).toContainText(/RECORDED EVAL FIXTURE|LIVE /);
+  await expect(page.getByTestId("semantic-card")).toContainText(/RECORDED .*EVAL|LIVE /);
   await expect(page.getByTestId("blocked-tests")).toContainText("RETURN TESTS BLOCKED");
   await expect(page.getByRole("button", { name: "Accept evidence" })).toBeDisabled();
   await page.getByRole("button", { name: "Investigate" }).click();

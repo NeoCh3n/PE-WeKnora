@@ -56,11 +56,19 @@ The first ambiguous-definition E2E test stayed forever in `CLASSIFYING`. The eff
 
 ## Entry 7 · Make the demo reproducible
 
-- Task: Replace a fragile manual recording sequence with a repeatable public-app walkthrough and produce an upload-ready local fallback.
+- Task: Replace a fragile manual recording sequence with a repeatable public-app walkthrough and produce a local timing fallback.
 - Files: `scripts/record-demo.ts`, `package.json`, `.gitignore`, `DEMO_SCRIPT.md`, and submission documentation.
 - Verification: generated MP4 is 149.1 seconds, 1440×900, H.264 video plus AAC audio, and 5.3 MB; six-frame visual contact sheet confirms the main review and HOLD receipt states.
-- Outcome: PASS. The MP4 remains an ignored local artifact pending human review and public upload.
+- Outcome: PASS for timing and product-flow evidence. The MP4 remains an ignored local artifact and must be regenerated after the real GPT-5.6 eval before public upload.
 - Commit: `d6e41d6d`.
+
+## Entry 8 · Make GPT-5.6 evidence auditable
+
+- Task: Turn the competition's model requirement into an explicit eligibility gate rather than treating a configured code path as proof of use.
+- Files: `scripts/eval-live.ts`, `evals/live/latest.json`, `components/DecisionReview.tsx`, `scripts/record-demo.ts`, and submission documentation.
+- Verification: placeholder mode cannot display a verified model badge; a successful live eval writes model, timestamp, response ID, fixture hash, and structured result to both an immutable timestamped file and judge-visible `latest.json`; the recorder changes its narration only when that artifact is present.
+- Outcome: PASS for implementation. Actual GPT-5.6 execution remains blocked on authorized API access and is clearly marked as the primary eligibility gate.
+- Commit: pending.
 
 ## Verification log
 

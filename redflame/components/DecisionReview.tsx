@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { approvedSnapshot, candidateSnapshot, memoParagraphs } from "@/fixtures/deals";
+import latestEval from "@/evals/live/latest.json";
 import { compileSnapshot, formatMoney, formatMoic, formatPercent } from "@/lib/compiler";
 import { initialReviewState, transitionReview } from "@/lib/review-state";
 import type { ReviewState, TestOutcome } from "@/lib/types";
@@ -11,13 +12,32 @@ const STORAGE_KEY = "redflame-review-v1";
 type EvidenceView = "value" | "ambiguous";
 type ModelState =
   | { status: "idle" | "pending" }
-  | { status: "live" | "recorded"; explanation: string; timestamp: string; reasonCode: string; modelName?: string }
+  | { status: "live" | "recorded"; explanation: string; timestamp: string; reasonCode: string; modelName?: string; verified?: boolean }
   | { status: "unavailable"; explanation: string };
 
-const recordedEval = {
+const verifiedRecordedEval = latestEval as {
+  mode?: string;
+  timestamp?: string;
+  model?: string;
+  result?: { explanation?: string; reason_code?: string; definition_changed?: boolean; confidence?: number };
+};
+const hasVerifiedRecordedEval = verifiedRecordedEval.mode === "live_eval"
+  && verifiedRecordedEval.result?.definition_changed === true
+  && typeof verifiedRecordedEval.result.explanation === "string"
+  && typeof verifiedRecordedEval.result.reason_code === "string"
+  && typeof verifiedRecordedEval.timestamp === "string"
+  && typeof verifiedRecordedEval.model === "string";
+const recordedEval = hasVerifiedRecordedEval ? {
+  explanation: verifiedRecordedEval.result!.explanation!,
+  timestamp: verifiedRecordedEval.timestamp!,
+  reasonCode: verifiedRecordedEval.result!.reason_code!,
+  modelName: verifiedRecordedEval.model!,
+  verified: true,
+} : {
   explanation: "The source notes treat transformation adjustments differently, so the EBITDA definitions are not directly comparable.",
-  timestamp: "2026-07-16T00:00:00Z",
+  timestamp: "EXAMPLE ONLY",
   reasonCode: "adjustment_treatment_changed",
+  verified: false,
 };
 
 function Badge({ children, tone = "neutral" }: { children: React.ReactNode; tone?: "neutral" | "danger" | "success" | "warning" }) {
@@ -202,7 +222,7 @@ export function DecisionReview() {
                 {model.status === "pending" && <div className="model-state model-pending"><span className="spinner" /> CLASSIFYING AMBIGUOUS DEFINITION</div>}
                 {(model.status === "live" || model.status === "recorded") && (
                   <div className="model-result">
-                    <Badge tone="warning">{model.status === "live" ? `LIVE ${model.modelName}` : "RECORDED EVAL FIXTURE · NOT LIVE"}</Badge>
+                    <Badge tone="warning">{model.status === "live" ? `LIVE ${model.modelName}` : model.verified ? `RECORDED ${model.modelName} EVAL · VERIFIED ARTIFACT` : "RECORDED EVAL FIXTURE · NOT LIVE"}</Badge>
                     <strong>DEFINITION CHANGED · COMPARISON BLOCKED</strong>
                     <p>{model.explanation}</p>
                     <small>{model.reasonCode} · {model.timestamp}</small>

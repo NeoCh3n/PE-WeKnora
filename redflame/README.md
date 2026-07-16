@@ -30,7 +30,7 @@ pnpm dev
 
 Open `http://localhost:3000`.
 
-The default public-safe mode does not call a model. It shows a committed fallback labeled `RECORDED EVAL FIXTURE · NOT LIVE`; that fixture is not presented as model-run evidence. To enable the constrained live endpoint, copy `.env.example` to `.env.local` and configure OpenAI plus Upstash Redis. The endpoint accepts one committed fixture ID, not arbitrary prompts.
+The default public-safe mode does not call a model. Until a real eval runs, it shows a committed fallback labeled `RECORDED EVAL FIXTURE · NOT LIVE`; that fixture is not presented as model-run evidence. `pnpm run eval:live` uses authorized GPT-5.6 access and replaces `evals/live/latest.json` with a timestamped artifact containing the model, response ID, and fixture hash. After that artifact is reviewed and committed, the UI identifies it as a verified recorded eval. To enable the constrained runtime endpoint as well, copy `.env.example` to `.env.local` and configure OpenAI plus Upstash Redis. The endpoint accepts one committed fixture ID, not arbitrary prompts.
 
 ## Verification
 
@@ -116,10 +116,10 @@ This hackathon build intentionally does not parse arbitrary Excel files, execute
 | Playwright semantic-block path | PASS |
 | Resolution Receipt screenshot | PASS · [`docs/resolution-receipt.png`](./docs/resolution-receipt.png) |
 | Public Vercel URL | PASS · [redflame-plum.vercel.app](https://redflame-plum.vercel.app) |
-| Local narrated demo MP4 | PASS · 149.1 seconds · 1440×900 · H.264/AAC · intentionally not committed |
-| Timestamped live GPT eval | MISSING; recorded example is labeled not live |
+| Local narrated demo timing fallback | PASS · 149.1 seconds · 1440×900 · H.264/AAC · regenerate after the real GPT-5.6 eval before submission |
+| Timestamped GPT-5.6 eval artifact | MISSING; `evals/live/latest.json` is an explicit placeholder |
 | Codex `/feedback` ID | MISSING |
-| Public video under three minutes | MISSING; local upload-ready MP4 exists |
+| Public video under three minutes | MISSING; current local MP4 is a timing fallback, not eligibility evidence |
 | Direct user validation | MISSING; impact is labeled unvalidated |
 
 ## License

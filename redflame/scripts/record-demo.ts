@@ -3,6 +3,7 @@ import { mkdir, readdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { promisify } from "node:util";
 import { chromium, type Page } from "@playwright/test";
+import latestEval from "../evals/live/latest.json";
 
 const run = promisify(execFile);
 const root = process.cwd();
@@ -13,6 +14,7 @@ const ffmpeg = process.env.FFMPEG_PATH || "/opt/homebrew/bin/ffmpeg";
 const ffprobe = process.env.FFPROBE_PATH || "/opt/homebrew/bin/ffprobe";
 const voice = process.env.DEMO_VOICE || "Samantha";
 const speechRate = process.env.DEMO_SPEECH_RATE || "165";
+const hasVerifiedEval = (latestEval as { mode?: string }).mode === "live_eval";
 
 type Segment = {
   narration: string;
@@ -37,7 +39,9 @@ const segments: Segment[] = [
     prepare: async (page) => page.getByRole("heading", { name: "One fact, one traceable path" }).scrollIntoViewIfNeeded(),
   },
   {
-    narration: "Now consider ambiguous source language. The public demo shows a clearly labeled fallback fixture, not a live model result. In configured live mode, the model may classify the semantic definition, but it never calculates a number or changes a hurdle. RedFlame blocks comparison and disables Accept.",
+    narration: hasVerifiedEval
+      ? "Now consider ambiguous source language. The public demo shows a timestamped recorded G P T five point six evaluation artifact. G P T five point six classifies only the semantic definition; it never calculates a number or changes a hurdle. RedFlame blocks comparison and disables Accept."
+      : "Now consider ambiguous source language. The public demo shows a clearly labeled fallback fixture, not a live model result. In configured live mode, G P T five point six may classify the semantic definition, but it never calculates a number or changes a hurdle. RedFlame blocks comparison and disables Accept.",
     prepare: async (page) => {
       await page.getByRole("button", { name: "Ambiguous definition" }).click();
       await page.getByTestId("semantic-card").getByText(/RECORDED EVAL FIXTURE|LIVE /).waitFor();

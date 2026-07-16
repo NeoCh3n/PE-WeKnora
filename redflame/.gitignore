@@ -7,5 +7,6 @@ coverage/
 .env.local
 evals/live/*.json
 !evals/live/recorded-example.json
+!evals/live/latest.json
 .vercel
 artifacts/

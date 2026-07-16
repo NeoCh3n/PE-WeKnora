@@ -37,8 +37,11 @@ async function main() {
   const outputDir = path.join(process.cwd(), "evals", "live");
   await mkdir(outputDir, { recursive: true });
   const outputPath = path.join(outputDir, `${timestamp.replace(/[:.]/g, "-")}.json`);
-  await writeFile(outputPath, `${JSON.stringify(artifact, null, 2)}\n`, "utf8");
+  const serialized = `${JSON.stringify(artifact, null, 2)}\n`;
+  await writeFile(outputPath, serialized, "utf8");
+  await writeFile(path.join(outputDir, "latest.json"), serialized, "utf8");
   console.log(`Live eval passed: ${outputPath}`);
+  console.log(`Judge-visible artifact updated: ${path.join(outputDir, "latest.json")}`);
 }
 
 main().catch((error) => {

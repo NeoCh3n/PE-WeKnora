@@ -118,9 +118,9 @@ For an investment professional, the value is a reviewable answer to “what must
 
 ## Final submission blockers
 
-- [ ] Run `pnpm run eval:live` with authorized GPT-5.6 access and commit the timestamped artifact, or keep the recorded mode and accurately describe it.
+- [ ] **Eligibility gate:** run `pnpm run eval:live` with authorized GPT-5.6 access, review and commit `evals/live/latest.json`, redeploy, then regenerate the demo so its audio and visible badge demonstrate actual GPT-5.6 usage.
 - [ ] Add Codex `/feedback` session ID.
-- [x] Generate and verify the local narrated demo: `artifacts/redflame-demo.mp4` · 149.1 seconds · 1440×900 · H.264/AAC.
+- [x] Generate and verify a local timing fallback: `artifacts/redflame-demo.mp4` · 149.1 seconds · 1440×900 · H.264/AAC. It must be regenerated after the real GPT-5.6 eval.
 - [ ] Review the generated MP4, or record a human-voice take using [`DEMO_SCRIPT.md`](./DEMO_SCRIPT.md).
 - [ ] Upload the selected video publicly and add its URL to README and Devpost.
 - [x] Confirm GitHub Actions is green: [run 29513856511](https://github.com/NeoCh3n/PE-WeKnora/actions/runs/29513856511).
