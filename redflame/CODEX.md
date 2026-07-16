@@ -51,7 +51,7 @@ The first ambiguous-definition E2E test stayed forever in `CLASSIFYING`. The eff
 - Task: Audit the model boundary and judge-visible fallback language before freezing the submission candidate.
 - Files: `app/api/semantic/route.ts`, `lib/semantic-model.ts`, `components/DecisionReview.tsx`, `tests/semantic-model.test.ts`, and submission documentation.
 - Verification: model results that deny a definition change or fall below the confidence threshold are rejected; the public fallback is labeled as a fixture rather than implied model-run evidence; unit tests and production build pass.
-- Outcome: PASS locally. The public deployment remains fail-closed until the corrected build is redeployed.
+- Outcome: PASS. The corrected build was deployed and both Playwright paths passed against the public URL.
 - Commit: `5d5af2a4`.
 
 ## Verification log
@@ -66,4 +66,4 @@ next build: PASS
 
 - Codex `/feedback` session ID: MISSING, submission blocker.
 - Judge-visible Codex session links: not claimed.
-- Public deployment: `https://redflame-plum.vercel.app` · Vercel deployment `dpl_EwPt3hXVykdBBLRafzhkviSiX9J5` · READY. Runtime application code is present in pushed commit `48028cad`.
+- Public deployment: `https://redflame-plum.vercel.app` · Vercel deployment `dpl_5M3x71U9vknNFaLGJqD6e5qUXEV6` · READY. Runtime application code is present in pushed commit `5d5af2a4`; both browser paths passed against this deployment.
