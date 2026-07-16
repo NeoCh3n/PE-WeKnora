@@ -52,7 +52,7 @@ The first ambiguous-definition E2E test stayed forever in `CLASSIFYING`. The eff
 - Files: `app/api/semantic/route.ts`, `lib/semantic-model.ts`, `components/DecisionReview.tsx`, `tests/semantic-model.test.ts`, and submission documentation.
 - Verification: model results that deny a definition change or fall below the confidence threshold are rejected; the public fallback is labeled as a fixture rather than implied model-run evidence; unit tests and production build pass.
 - Outcome: PASS locally. The public deployment remains fail-closed until the corrected build is redeployed.
-- Commit: pending.
+- Commit: `5d5af2a4`.
 
 ## Verification log
 
