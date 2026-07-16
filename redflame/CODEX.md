@@ -35,7 +35,7 @@ The first ambiguous-definition E2E test stayed forever in `CLASSIFYING`. The eff
 - Task: Separate deterministic unit tests from Playwright, pin a Next-compatible TypeScript version, and prove a clean production build.
 - Files: `vitest.config.ts`, `playwright.config.ts`, `package.json`, `pnpm-lock.yaml`, `.github/workflows/redflame-ci.yml`.
 - Verification: 16 deterministic tests, two browser paths, and `next build`.
-- Outcome: PASS locally. GitHub-hosted CI is pending push.
+- Outcome: PASS locally. Vercel also installed from the lockfile and completed the production build. GitHub-hosted CI is pending push.
 - Commits: `474a94f8`, `daa1dcb2`, `27f89547`, `45d736c3`.
 
 ## Entry 5 · Audit judge-visible claims
@@ -58,4 +58,4 @@ next build: PASS
 
 - Codex `/feedback` session ID: MISSING, submission blocker.
 - Judge-visible Codex session links: not claimed.
-- Public deployment commit: MISSING.
+- Public deployment: `https://redflame-plum.vercel.app` · Vercel deployment `dpl_EwPt3hXVykdBBLRafzhkviSiX9J5` · READY. The branch is not yet pushed, so a Git-hosted deployment commit is not claimed.

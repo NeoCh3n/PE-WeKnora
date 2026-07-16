@@ -4,7 +4,7 @@ RedFlame is **pull requests and CI tests for investment decisions**.
 
 When a new seller-model snapshot arrives after an IC memo has been drafted, RedFlame compares the evidence, recompiles only the affected return path, reruns versioned investment hurdles, marks dependent memo assertions stale, and asks a human to resolve the evidence. Accepting evidence never approves the investment.
 
-> Submission status: runnable local build. Public deployment URL, final video, live GPT eval, and Codex `/feedback` ID are not yet available and are not claimed below.
+> Submission status: the public-safe build is deployed at **[redflame-plum.vercel.app](https://redflame-plum.vercel.app)**. Final video, live GPT eval, and Codex `/feedback` ID are not yet available and are not claimed below.
 
 ![RedFlame Decision PR](./docs/decision-pr.png)
 
@@ -109,7 +109,7 @@ This hackathon build intentionally does not parse arbitrary Excel files, execute
 | Playwright Accept/HOLD/Receipt/Reset path | PASS |
 | Playwright semantic-block path | PASS |
 | Resolution Receipt screenshot | PASS · [`docs/resolution-receipt.png`](./docs/resolution-receipt.png) |
-| Public Vercel URL | MISSING |
+| Public Vercel URL | PASS · [redflame-plum.vercel.app](https://redflame-plum.vercel.app) |
 | Timestamped live GPT eval | MISSING; recorded example is labeled not live |
 | Codex `/feedback` ID | MISSING |
 | Public video under three minutes | MISSING |
