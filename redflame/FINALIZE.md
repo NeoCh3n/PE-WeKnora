@@ -68,6 +68,8 @@ Copy the generated Session ID into `CODEX.md` and the Devpost form. Do not subst
 ## 4. Final Devpost fields
 
 - Project: RedFlame Decision CI
+- Submitter type: Individual
+- Country of residence: Hong Kong
 - Track: Work & Productivity
 - Public app: https://redflame-plum.vercel.app
 - Source: https://github.com/NeoCh3n/PE-WeKnora/tree/codex/redflame-decision-ci/redflame

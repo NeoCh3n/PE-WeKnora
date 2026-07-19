@@ -105,6 +105,9 @@ next build: PASS
 
 ## Required submission metadata
 
+- Submitter type: Individual.
+- Country of residence: Hong Kong.
+- Category: Work & Productivity.
 - Codex `/feedback` session ID: MISSING, submission blocker.
 - Judge-visible Codex session links: not claimed.
 - Public deployment: `https://redflame-plum.vercel.app` · Vercel deployment `dpl_ATAaMsQ8jo6wiDd3tbmg9JHfZRyW` · READY. Runtime application code is present in pushed commit `1e39d4b5`; both browser paths passed against this deployment. The unconfigured semantic endpoint remains fail-closed.
